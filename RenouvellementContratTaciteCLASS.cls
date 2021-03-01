@@ -12,17 +12,17 @@ public class RenouvellementContratTaciteCLASS
         	{
              
                  
-            	Contract c					= new contract();
-            	c.AccountId					= InitialC.AccountId;
-				c.Status					= 'brouillon';
-				c.OwnerId					= InitialC.OwnerId;
-				c.Tacite_reconduction__c	= true;
-				c.Type_de_contract__c		= InitialC.Type_de_contract__c;
-				c.Sous_type_de_contrat__c	= InitialC.Sous_type_de_contrat__c;
+            			Contract c				= new contract();
+            			c.AccountId				= InitialC.AccountId;
+				c.Status				= 'brouillon';
+				c.OwnerId				= InitialC.OwnerId;
+				c.Tacite_reconduction__c		= true;
+				c.Type_de_contract__c			= InitialC.Type_de_contract__c;
+				c.Sous_type_de_contrat__c		= InitialC.Sous_type_de_contrat__c;
 				c.Montant__c				= InitialC.Montant__c;
-				c.StartDate					= InitialC.startDate.AddMonths(12);
-                c.ContractTerm				= 12;
-				c.OwnerExpirationNotice		= '90';
+				c.StartDate				= InitialC.startDate.AddMonths(12);
+                		c.ContractTerm				= 12;
+				c.OwnerExpirationNotice			= '90';
 				c.Billingcity				= InitialC.Billingcity;
 				c.Billingcountry			= InitialC.Billingcountry;
 				c.BillingpostalCode			= InitialC.BillingpostalCode;
@@ -31,24 +31,24 @@ public class RenouvellementContratTaciteCLASS
 				c.CompanySignedId			= InitialC.CompanySignedId;
 				c.CompanySignedDate			= InitialC.CompanySignedDate;
 				c.CustomerSignedId			= InitialC.CustomerSignedId;
-				c.CustomerSignedDate		= InitialC.CustomerSignedDate;
+				c.CustomerSignedDate			= InitialC.CustomerSignedDate;
 				c.Shippingcity				= InitialC.Shippingcity;
 				c.Shippingcountry			= InitialC.Shippingcountry;
-				c.ShippingpostalCode		= InitialC.ShippingpostalCode;
+				c.ShippingpostalCode		        = InitialC.ShippingpostalCode;
 				c.Shippingstate				= InitialC.Shippingstate;
 				c.Shippingstreet			= InitialC.Shippingstreet;
-                c.ancien_contrat__c			= InitialC.id;
+               			c.ancien_contrat__c			= InitialC.id;
  				
-                insert c;
+                		insert c;
                 
                 
         		//recuperation des fichiers joints
                 List<ContentDocumentlink> cdlList = [SELECT Id,
-                                             		ShareType,
-                                             		LinkedEntityId, 
-                                             		ContentDocumentId
-                                               FROM ContentDocumentlink
-                                              WHERE LinkedEntityId = :InitialC.Id];
+                                             		    ShareType,
+                                             		    LinkedEntityId, 
+                                             		    ContentDocumentId
+                                               	       FROM ContentDocumentlink
+                                                      WHERE LinkedEntityId = :InitialC.Id];
                 // System.debug(cdlList.size());
             	if(cdlList != null)
                 {
@@ -56,7 +56,7 @@ public class RenouvellementContratTaciteCLASS
         			for(ContentDocumentLink file: cdlList)
                 	{
             
-  						ContentDocumentLink cloneFile = file.clone();
+  						ContentDocumentLink cloneFile     = file.clone();
   						cloneFile.linkedentityid 	  = c.Id; 
             
            				insert cloneFile;
